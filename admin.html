@@ -98,7 +98,7 @@
 
         async function cargarCabecera() {
             try {
-                const response = await fetch('http://localhost:3000/api/modulo-activo');
+                const response = await fetch('https://server-backend.brazilsouth.cloudapp.azure.com/api/modulo-activo');
                 const data = await response.json();
                 document.getElementById('modulo-titulo').textContent = `Módulo Activo: ${data.nombre} · Control de Asistencias`;
             } catch (error) {
@@ -120,7 +120,7 @@
             formData.append('archivoFechas', inputFechas);
 
             try {
-                const response = await fetch('http://localhost:3000/api/importar-estudiantes', {
+                const response = await fetch('https://server-backend.brazilsouth.cloudapp.azure.com/api/importar-estudiantes', {
                     method: 'POST',
                     body: formData
                 });
@@ -138,7 +138,7 @@
                     const nombreModulo = prompt("Ingresa el nombre del nuevo módulo académico:", "PowerBi Avanzado");
                     if (!nombreModulo) return;
 
-                    const response = await fetch('http://localhost:3000/api/admin/reiniciar-modulo', {
+                    const response = await fetch('https://server-backend.brazilsouth.cloudapp.azure.com/api/admin/reiniciar-modulo', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({ nuevoNombre: nombreModulo })
@@ -170,13 +170,13 @@
                 let url = '';
                 if (tabActual === 'asistencias') {
                     cabecera.innerHTML = `<tr><th>Registro</th><th>Nombre Estudiante</th><th>Fecha</th><th>Hora Real</th><th>Estado</th><th>Acciones </th></tr>`;
-                    url = 'http://localhost:3000/api/admin/asistencias';
+                    url = 'https://server-backend.brazilsouth.cloudapp.azure.com/api/admin/asistencias';
                 } else if (tabActual === 'estudiantes') {
                     cabecera.innerHTML = `<tr><th>Número de Registro</th><th>Nombre Completo</th><th>Correo Electrónico</th></tr>`;
-                    url = 'http://localhost:3000/api/admin/estudiantes';
+                    url = 'https://server-backend.brazilsouth.cloudapp.azure.com/api/admin/estudiantes';
                 } else if (tabActual === 'auditoria') {
                     cabecera.innerHTML = `<tr><th>Operador</th><th>Acción Realizada</th><th>Fecha</th><th>Hora</th><th>Afectado</th></tr>`;
-                    url = 'http://localhost:3000/api/admin/auditoria';
+                    url = 'https://server-backend.brazilsouth.cloudapp.azure.com/api/admin/auditoria';
                 }
 
                 const res = await fetch(url);
@@ -249,7 +249,7 @@
 
         async function cambiarEstado(registro, fecha, nuevoEstado) {
             try {
-                const response = await fetch('http://localhost:3000/api/admin/cambiar-asistencia', {
+                const response = await fetch('https://server-backend.brazilsouth.cloudapp.azure.com/api/admin/cambiar-asistencia', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ registro, fecha, nuevoEstado })
