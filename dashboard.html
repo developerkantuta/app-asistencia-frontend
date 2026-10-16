@@ -256,7 +256,7 @@
             }
         });
 
-        // FUNCIÓN CORREGIDA: Ahora es 'async' y lee los datos dinámicamente
+        // FUNCIÓN CORREGIDA: Ahora es 'async' y lee los datos dinámicamente desde el backend
         async function cargarHistorial() {
             try {
                 const responseAsist = await fetch(`https://server-backend.brazilsouth.cloudapp.azure.com/api/historial/${estudiante.registro}`);
